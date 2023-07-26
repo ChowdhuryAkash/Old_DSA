@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr=[
+            ['m1',8,60],
+            ['m2',3,14],
+            ['m3',5,40]
+        ];
+        max=10;
+        len=arr.length;
+        
+
+        for(var i=0;i<arr.length;i++){
+            for(var j=0;j<arr.length-1;j++){
+                if((arr[j][2]/arr[j][1])<(arr[j+1][2]/arr[j+1][1])){
+                    var temp0=arr[j][0];
+                    var temp1=arr[j][1];
+                    var temp2=arr[j][2];
+                    
+                    arr[j][0]=arr[j+1][0];
+                    arr[j][1]=arr[j+1][1];
+                    arr[j][2]=arr[j+1][2];
+                    
+                    arr[j+1][0]=temp0;
+                    arr[j+1][1]=temp1;
+                    arr[j+1][2]=temp2;
+                    
+                    
+                }
+            }
+        }    
+        
+
+
+let profit = []; let rows = 3; let columns = 2;let p=-1;
+	for (let i = 0; i < rows; i++) {
+	    profit[i] = [];
+	    for (let j = 0; j < columns; j++) {
+	        profit[i][j] = -1;
+	        }
+	}
+    
+    for(var i=0;i<len;i++){
+        var quantity=arr[i][1];
+        profit[i][0]=arr[i][0];
+
+        if(max<quantity){
+            profit[i][1]=max;
+            
+
+
+        }
+        else if(max==quantity){
+            profit[i][1]=max;
+
+        }
+        else{
+            //===============max > quantity
+            profit[i][1]=quantity;
+            
+            
+            
+        }
+        max=max-profit[i][1];
+    }
+
+document.write(profit);
+document.write("We can take only 10 amount.<br>So to get best profit we will take :<br>");
+for(var i=0;i<len;i++){
+    document.write("Element "+ profit[i][0] + " in " +  profit[i][1]+ " amount<br>" );
+
+}
+
+var total_profit=0;
+for(var i=0;i<len;i++){
+    var m=profit[i][0];
+    for(var j=0;j<len;j++){
+        if(arr[j][0]==profit[i][0]){
+            var z=(arr[j][2]/arr[j][1])*profit[i][1];
+            total_profit=total_profit+j;
+            document.write(profit[i][0] + "profit : " + z +"<br>");
+
+        }
+
+    }
+
+}
+document.write("<br>Total profit = " + total_profit);
+
+
+
+    </script>
+    
+</body>
+</html>
